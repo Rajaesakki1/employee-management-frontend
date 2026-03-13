@@ -1,5 +1,9 @@
 import axios from 'axios';
-const REST_API_BASE_URL ='http://localhost:8080/api/employees';
+
+// Use the environment variable if deployed, otherwise fallback to local backend
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+const REST_API_BASE_URL = `${API_URL}/api/employees`;
+
 export const listEmployees=()=> axios.get(REST_API_BASE_URL);
 export const createEmployee = (employee) => axios.post(REST_API_BASE_URL,employee);
 export const getEmployee=(employeeId)=>axios.get(REST_API_BASE_URL+'/'+employeeId);
